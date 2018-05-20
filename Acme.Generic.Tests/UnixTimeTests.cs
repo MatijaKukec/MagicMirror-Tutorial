@@ -17,8 +17,8 @@ namespace Acme.Generic.Tests
             DateTime expectedSunset = new DateTime(2018, 8, 16, 21, 20, 00);
 
             // Act
-            DateTime convertedSunrise = UnixTimeHelper.ConvertFromUnixTimeStamp(sunrise);
-            DateTime convertedSunset = UnixTimeHelper.ConvertFromUnixTimeStamp(sunset);
+            DateTime convertedSunrise = DateTimeHelper.ConvertFromUnixTimeStamp(sunrise);
+            DateTime convertedSunset = DateTimeHelper.ConvertFromUnixTimeStamp(sunset);
 
             // Assert
             Assert.Equal(expectedSunrise, convertedSunrise);
@@ -33,8 +33,8 @@ namespace Acme.Generic.Tests
             DateTime sunsetDate = new DateTime(2018, 8, 16, 21, 20, 00);
 
             // Act
-            int convertedSunrise = UnixTimeHelper.ConvertToUnixTimeStamp(sunriseDate);
-            int convertedSunset = UnixTimeHelper.ConvertToUnixTimeStamp(sunsetDate);
+            int convertedSunrise = DateTimeHelper.ConvertToUnixTimeStamp(sunriseDate);
+            int convertedSunset = DateTimeHelper.ConvertToUnixTimeStamp(sunsetDate);
 
             // Assert
             Assert.Equal(sunrise, convertedSunrise);

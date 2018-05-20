@@ -22,7 +22,7 @@ namespace MagicMirror.Business.Models
 
         public override void ConvertValues()
         {
-            ConvertTemperature(Temperature, TemperatureUom.Kelvin);
+            ConvertTemperature(Temperature, TemperatureUom.Celsius);
             ConvertDates();
         }
 
@@ -30,42 +30,38 @@ namespace MagicMirror.Business.Models
         {
             int.TryParse(Sunset, out int sunset);
             int.TryParse(Sunrise, out int sunrise);
-            Sunset = UnixTimeHelper.ConvertFromUnixTimeStamp(sunset).ToShortTimeString();
-            Sunrise = UnixTimeHelper.ConvertFromUnixTimeStamp(sunrise).ToShortTimeString();
+            Sunset = DateTimeHelper.ConvertFromUnixTimeStamp(sunset).ToShortTimeString();
+            Sunrise = DateTimeHelper.ConvertFromUnixTimeStamp(sunrise).ToShortTimeString();
         }
 
-        private void ConvertTemperature(double degrees, TemperatureUom baseUom)
+        private void ConvertTemperature(double degrees, TemperatureUom toConvertInto)
         {
-            double convertedDegrees;
-
-            switch (TemperatureUom)
+            double convertedDegrees = 0;
+            switch (toConvertInto)
             {
                 case TemperatureUom.Celsius:
-                    if (baseUom == TemperatureUom.Kelvin)
-                    {
-                        convertedDegrees = TemperatureHelper.KelvinToCelsius(degrees);
-                    }
-                    else if (baseUom == TemperatureUom.Celsius)
-                    {
-                        convertedDegrees = degrees;
-                    }
-                    else
-                    {
-                        convertedDegrees = TemperatureHelper.KelvinToCelsius(degrees);
-                    }
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToCelsius(degrees); }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degrees); }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = degrees; }
                     break;
+
                 case TemperatureUom.Fahrenheit:
-                    convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degrees);
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degrees); }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = degrees; }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToFahrenheit(degrees); }
                     break;
 
                 case TemperatureUom.Kelvin:
-                    convertedDegrees = degrees;
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = degrees; }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.FahrenheitToKelvin(degrees); }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToKelvin(degrees); }
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(TemperatureUom), TemperatureUom, null);
             }
 
+            TemperatureUom = toConvertInto;
             Temperature = convertedDegrees;
         }
     }

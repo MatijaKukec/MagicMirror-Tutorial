@@ -2,7 +2,7 @@
 
 namespace Acme.Generic.Helpers
 {
-    public static class UnixTimeHelper
+    public static class DateTimeHelper
     {
         private static DateTime baseUnixDateTime =
             new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -17,6 +17,22 @@ namespace Acme.Generic.Helpers
         {
             TimeSpan timeSpan = date - baseUnixDateTime;
             return (int)timeSpan.TotalSeconds;
+        }
+
+        public static string GetTimeOfDay()
+        {
+            var currentTime = DateTime.Now.TimeOfDay.Hours;
+
+            if (currentTime >= 0 && currentTime <= 11)
+                return "morning";
+            else if (currentTime <= 13)
+                return "day";
+            else if (currentTime <= 18)
+                return "afternoon";
+            else if (currentTime <= 22)
+                return "evening";
+            else
+                return "night";
         }
     }
 }

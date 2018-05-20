@@ -36,11 +36,11 @@ namespace MagicMirror.Business.Models
             switch (distanceUom)
             {
                 case DistanceUom.Imperial:
-                    convertedDistance = DistanceHelper.KiloMetersToMiles(Distance);
+                    convertedDistance = DistanceHelper.KilometersToMiles(Distance);
                     break;
 
                 case DistanceUom.Metric:
-                    convertedDistance = DistanceHelper.MilesToKiloMeters(Distance);
+                    convertedDistance = DistanceHelper.MilesToKilometers(Distance);
                     break;
 
                 default:
