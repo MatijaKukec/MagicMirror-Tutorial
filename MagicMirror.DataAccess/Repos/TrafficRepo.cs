@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagicMirror.DataAccess.Repos
 {
-    public class TrafficRepo : Repository<TrafficEntity>, ITrafficRepo
+    public class TrafficRepo : Repository<GoogleMapsEntity>, ITrafficRepo
     {
         private string _start;
         private string _destination;
@@ -16,7 +16,7 @@ namespace MagicMirror.DataAccess.Repos
         {
             FillInputData(start, destination);
             HttpResponseMessage message = await GetHttpResponseMessageAsync();
-            TrafficEntity entity = await GetEntityFromJsonAsync(message);
+            GoogleMapsEntity entity = await GetEntityFromJsonAsync(message);
 
             if (entity.Rows[0].Elements[0].Distance == null)
             {

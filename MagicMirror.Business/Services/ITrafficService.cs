@@ -8,6 +8,6 @@ namespace MagicMirror.Business.Services
     {
         Task<TrafficModel> GetTrafficModelAsync(string origin, string destination);
 
-        TrafficModel MapFromEntity(TrafficEntity entity);
+        TrafficModel MapFromEntity(GoogleMapsEntity entity);
     }
 }

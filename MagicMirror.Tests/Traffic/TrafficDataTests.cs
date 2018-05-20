@@ -20,12 +20,12 @@ namespace MagicMirror.Tests.Traffic
         public async Task Can_Retrieve_Traffic_Data()
         {
             // Arrange
-            TrafficEntity entity = null;
+            GoogleMapsEntity entity = null;
             string start = "London, UK";
             string destination = "Brighton, UK";
 
             // Act
-            entity = (TrafficEntity) await _repo.GetTrafficInfoAsync(start, destination);
+            entity = (GoogleMapsEntity) await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
             Assert.NotNull(entity);
@@ -43,7 +43,7 @@ namespace MagicMirror.Tests.Traffic
             var entity = await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
-            Assert.IsType<TrafficEntity>(entity);
+            Assert.IsType<GoogleMapsEntity>(entity);
         }
 
         [Fact]

@@ -5,6 +5,6 @@ namespace MagicMirror.DataAccess.Repos
 {
     public interface ITrafficRepo
     {
-        Task<Entity> GetTrafficInfoAsync(string start, string destination);
+        Task<TrafficEntity> GetTrafficInfoAsync(string start, string destination);
     }
 }

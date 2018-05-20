@@ -25,7 +25,7 @@ namespace MagicMirror.Tests.Traffic
         public void Can_Map_From_Entity()
         {
             // Arrange
-            TrafficEntity entity = GetMockEntity();
+            GoogleMapsEntity entity = GetMockEntity();
 
             // Act
             TrafficModel model = _service.MapFromEntity(entity);
@@ -37,7 +37,7 @@ namespace MagicMirror.Tests.Traffic
             Assert.Equal(Origin, model.Origin);
         }
 
-        private TrafficEntity GetMockEntity()
+        private GoogleMapsEntity GetMockEntity()
         {
             var element = new Element
             {
@@ -45,7 +45,7 @@ namespace MagicMirror.Tests.Traffic
                 Duration = new Duration { Value = Duration },
             };
 
-            var entity = new TrafficEntity
+            var entity = new GoogleMapsEntity
             {
                 Origin_addresses = new[] { Origin },
                 Destination_addresses = new[] { Destination },
