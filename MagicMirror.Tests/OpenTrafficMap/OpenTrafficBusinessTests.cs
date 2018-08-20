@@ -3,6 +3,7 @@ using MagicMirror.Business.Services;
 using MagicMirror.DataAccess.Entities.Entities;
 using MagicMirror.DataAccess.Entities.OpenMap;
 using Xunit;
+using Moq;
 
 namespace MagicMirror.Tests.OpenTrafficMap
 {
@@ -15,6 +16,9 @@ namespace MagicMirror.Tests.OpenTrafficMap
         private const int Distance = 76;
         private const string Origin = "London, Uk";
         private const string Destination = "Leeds, Uk";
+
+        // Moq object
+
 
         public OpenTrafficBusinessTests()
         {
