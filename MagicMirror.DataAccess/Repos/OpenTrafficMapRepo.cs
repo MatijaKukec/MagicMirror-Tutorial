@@ -1,7 +1,7 @@
 ﻿using MagicMirror.DataAccess.Configuration;
 using MagicMirror.DataAccess.Entities.Entities;
-using MagicMirror.DataAccess.Entities.Traffic;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MagicMirror.DataAccess.Repos
@@ -11,9 +11,18 @@ namespace MagicMirror.DataAccess.Repos
         private string _start;
         private string _destination;
 
-        public Task<OpenMapEntity> GetTrafficInfoAsync(string start, string destination)
+        public async Task<OpenMapEntity> GetTrafficInfoAsync(string start, string destination)
         {
-            throw new NotImplementedException();
+            FillInputData(start, destination);
+            HttpResponseMessage message = await GetHttpResponseMessageAsync();
+            OpenMapEntity entity = await GetEntityFromJsonAsync(message);
+
+            if (entity.Route.distance == 0)
+            {
+                throw new HttpRequestException("Unable to retrieve traffic information");
+            }
+
+            return entity;
         }
 
         private void FillInputData(string start, string destination)

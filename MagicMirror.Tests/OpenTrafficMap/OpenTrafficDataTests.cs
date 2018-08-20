@@ -43,7 +43,7 @@ namespace MagicMirror.Tests.OpenTrafficMap
             var entity = await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
-            Assert.IsType<OpenTrafficMapRepo>(entity);
+            Assert.IsType<OpenMapEntity>(entity);
         }
 
         [Fact]
