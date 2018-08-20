@@ -9,7 +9,7 @@ namespace MagicMirror.Tests.OpenTrafficMap
 {
     public class OpenTrafficDataTests
     {
-        private IOpenTrafficMapRepo _repo;
+        private ITrafficRepo _repo;
 
         public OpenTrafficDataTests()
         {
@@ -25,7 +25,7 @@ namespace MagicMirror.Tests.OpenTrafficMap
             string destination = "Brighton, UK";
 
             // Act
-            entity = await _repo.GetTrafficInfoAsync(start, destination);
+            entity = (OpenTrafficMapEntity)await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
             Assert.NotNull(entity);

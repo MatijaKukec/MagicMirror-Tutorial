@@ -7,7 +7,7 @@ namespace MagicMirror.Business.Services
 {
     public class OpenTrafficService : MappableService<OpenTrafficMapEntity, TrafficModel>, IOpenTrafficService
     {
-        private IOpenTrafficMapRepo _repo;
+        private ITrafficRepo _repo;
 
         public OpenTrafficService()
         {
@@ -16,7 +16,7 @@ namespace MagicMirror.Business.Services
 
         public async Task<TrafficModel> GetTrafficModelAsync(string origin, string destination)
         {
-            var entity = await _repo.GetTrafficInfoAsync(origin, destination);
+            var entity = (OpenTrafficMapEntity) await _repo.GetTrafficInfoAsync(origin, destination);
             TrafficModel model = MapFromEntity(entity);
 
             return model;

@@ -16,7 +16,7 @@ namespace MagicMirror.Business.Services
 
         public async Task<TrafficModel> GetTrafficModelAsync(string origin, string destination)
         {
-            TrafficEntity entity = await _repo.GetTrafficInfoAsync(origin, destination);
+            TrafficEntity entity = (TrafficEntity)await _repo.GetTrafficInfoAsync(origin, destination);
             TrafficModel model = MapFromEntity(entity);
 
             return model;

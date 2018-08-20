@@ -25,7 +25,7 @@ namespace MagicMirror.Tests.Traffic
             string destination = "Brighton, UK";
 
             // Act
-            entity = await _repo.GetTrafficInfoAsync(start, destination);
+            entity = (TrafficEntity) await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
             Assert.NotNull(entity);
