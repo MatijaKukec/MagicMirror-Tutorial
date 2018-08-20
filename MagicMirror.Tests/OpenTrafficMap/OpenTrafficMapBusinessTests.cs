@@ -2,27 +2,27 @@
 using MagicMirror.Business.Services;
 using MagicMirror.DataAccess.Entities.Entities;
 using MagicMirror.DataAccess.Entities.OpenMap;
-using Xunit;
+using MagicMirror.DataAccess.Repos;
 using Moq;
+using Xunit;
 
 namespace MagicMirror.Tests.OpenTrafficMap
 {
-    public class OpenTrafficBusinessTests
+    public class OpenTrafficMapBusinessTests
     {
         private IOpenTrafficService _service;
 
         /// Mock Data
         private const int Duration = 42;
+
         private const int Distance = 76;
         private const string Origin = "London, Uk";
         private const string Destination = "Leeds, Uk";
 
-        // Moq object
-
-
-        public OpenTrafficBusinessTests()
+        public OpenTrafficMapBusinessTests()
         {
-            _service = new OpenTrafficService();
+            var mockRepo = new Mock<ITrafficRepo>();
+            _service = new OpenTrafficService(mockRepo.Object);
         }
 
         [Fact]

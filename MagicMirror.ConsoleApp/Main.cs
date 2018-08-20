@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace MagicMirror.ConsoleApp
 {
-    public class Main 
+    public class Main
     {
         // Services
         private IWeatherService _weatherService;
+
         private ITrafficService _trafficService;
 
         // Models
         private UserInformation _userInformation;
+
         private WeatherModel _weatherModel;
         private TrafficModel _trafficModel;
 

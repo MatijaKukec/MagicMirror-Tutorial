@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using MagicMirror.DataAccess.Entities.Entities;
+﻿using MagicMirror.DataAccess.Entities.Entities;
 
 namespace MagicMirror.DataAccess.Entities.Traffic
 {

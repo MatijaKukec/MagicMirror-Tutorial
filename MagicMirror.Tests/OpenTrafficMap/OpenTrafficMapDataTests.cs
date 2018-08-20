@@ -7,11 +7,11 @@ using Xunit;
 
 namespace MagicMirror.Tests.OpenTrafficMap
 {
-    public class OpenTrafficDataTests
+    public class OpenTrafficMapDataTests
     {
         private ITrafficRepo _repo;
 
-        public OpenTrafficDataTests()
+        public OpenTrafficMapDataTests()
         {
             _repo = new OpenTrafficMapRepo();
         }

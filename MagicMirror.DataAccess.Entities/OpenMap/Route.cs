@@ -24,5 +24,4 @@
         public int[] locationSequence { get; set; }
         public bool hasFerry { get; set; }
     }
-
 }
