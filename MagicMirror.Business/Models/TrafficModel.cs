@@ -14,6 +14,8 @@ namespace MagicMirror.Business.Models
 
         public int Duration { get; set; }
 
+        public string TravelTime { get; set; }
+
         public DateTime TimeOfArrival { get; set; }
 
         public DistanceUom DistanceUom { get; set; }

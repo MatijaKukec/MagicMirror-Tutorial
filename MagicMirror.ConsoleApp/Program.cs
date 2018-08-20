@@ -23,7 +23,7 @@ namespace MagicMirror.ConsoleApp
         {
             // Add Services
             serviceCollection.AddTransient<ITrafficService, TrafficService>();
-            serviceCollection.AddTransient<ITrafficRepo, OpenTrafficMapRepo>();
+            serviceCollection.AddTransient<ITrafficRepo, GoogleMapsRepo>();
             serviceCollection.AddTransient<IWeatherService, WeatherService>();
             serviceCollection.AddTransient<IWeatherRepo, WeatherRepo>();
 

@@ -1,4 +1,5 @@
-﻿using MagicMirror.DataAccess.Entities.Traffic;
+﻿using MagicMirror.DataAccess.Entities.Entities;
+using MagicMirror.DataAccess.Entities.Traffic;
 using MagicMirror.DataAccess.Repos;
 using System;
 using System.Net.Http;
@@ -13,7 +14,7 @@ namespace MagicMirror.Tests.Traffic
 
         public TrafficDataTests()
         {
-            _repo = new TrafficRepo();
+            _repo = new GoogleMapsRepo();
         }
 
         [Fact]
@@ -25,7 +26,7 @@ namespace MagicMirror.Tests.Traffic
             string destination = "Brighton, UK";
 
             // Act
-            entity = (GoogleMapsEntity) await _repo.GetTrafficInfoAsync(start, destination);
+            entity = (GoogleMapsEntity)await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
             Assert.NotNull(entity);
@@ -33,7 +34,7 @@ namespace MagicMirror.Tests.Traffic
         }
 
         [Fact]
-        public async Task Return_Type_Should_Be_TrafficEntity()
+        public async Task Return_Type_Should_Be_GoogleMapsEntity()
         {
             // Arrange
             string start = "London, UK";

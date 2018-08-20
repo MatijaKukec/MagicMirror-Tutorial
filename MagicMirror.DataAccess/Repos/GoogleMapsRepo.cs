@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MagicMirror.DataAccess.Repos
 {
-    public class TrafficRepo : Repository<GoogleMapsEntity>, ITrafficRepo
+    public class GoogleMapsRepo : Repository<GoogleMapsEntity>, ITrafficRepo
     {
         private string _start;
         private string _destination;
 
-        public async Task<Entity> GetTrafficInfoAsync(string start, string destination)
+        public async Task<TrafficEntity> GetTrafficInfoAsync(string start, string destination)
         {
             FillInputData(start, destination);
             HttpResponseMessage message = await GetHttpResponseMessageAsync();
@@ -28,8 +28,8 @@ namespace MagicMirror.DataAccess.Repos
 
         private void FillInputData(string start, string destination)
         {
-            _apiId = DataAccessConfig.TrafficApiId;
-            _apiUrl = DataAccessConfig.TrafficApiUrl;
+            _apiId = DataAccessConfig.GoogleMapsApiId;
+            _apiUrl = DataAccessConfig.GoogleMapsApiUrl;
             _start = start;
             _destination = destination;
 

@@ -22,13 +22,15 @@ namespace MagicMirror.Business.Configuration
                 .ForMember(x => x.Origin, y => y.MapFrom(z => z.Origin_addresses[0]))
                 .ForMember(x => x.Destination, y => y.MapFrom(z => z.Destination_addresses[0]))
                 .ForMember(x => x.Distance, y => y.MapFrom(z => z.Rows[0].Elements[0].Distance.Value))
-                .ForMember(x => x.Duration, y => y.MapFrom(z => z.Rows[0].Elements[0].Duration.Value));
+                .ForMember(x => x.Duration, y => y.MapFrom(z => z.Rows[0].Elements[0].Duration.Value))
+                .ForMember(x => x.TravelTime, y => y.MapFrom(z => z.Rows[0].Elements[0].Duration.Text));
 
             CreateMap<OpenTrafficMapEntity, TrafficModel>()
                .ForMember(x => x.Origin, y => y.MapFrom(z => z.Route.locations[0].street))
                .ForMember(x => x.Destination, y => y.MapFrom(z => z.Route.locations[1].street))
                .ForMember(x => x.Distance, y => y.MapFrom(z => z.Route.distance))
-               .ForMember(x => x.Duration, y => y.MapFrom(z => z.Route.time));
+               .ForMember(x => x.Duration, y => y.MapFrom(z => z.Route.time))
+               .ForMember(x => x.TravelTime, y => y.MapFrom(z => z.Route.formattedTime));
         }
     }
 }

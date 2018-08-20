@@ -9,9 +9,9 @@ namespace MagicMirror.Business.Services
     {
         private ITrafficRepo _repo;
 
-        public OpenTrafficService()
+        public OpenTrafficService(ITrafficRepo repo)
         {
-            _repo = new OpenTrafficMapRepo();
+            _repo = repo;
         }
 
         public async Task<TrafficModel> GetTrafficModelAsync(string origin, string destination)

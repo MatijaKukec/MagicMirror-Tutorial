@@ -11,7 +11,7 @@ namespace MagicMirror.DataAccess.Repos
         private string _start;
         private string _destination;
 
-        public async Task<Entity> GetTrafficInfoAsync(string start, string destination)
+        public async Task<TrafficEntity> GetTrafficInfoAsync(string start, string destination)
         {
             FillInputData(start, destination);
             HttpResponseMessage message = await GetHttpResponseMessageAsync();

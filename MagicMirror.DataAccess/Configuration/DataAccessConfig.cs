@@ -18,7 +18,7 @@
             }
         }
 
-        public static string TrafficApiUrl
+        public static string GoogleMapsApiUrl
         {
             get
             {
@@ -26,7 +26,7 @@
             }
         }
 
-        public static string TrafficApiId
+        public static string GoogleMapsApiId
         {
             get
             {
