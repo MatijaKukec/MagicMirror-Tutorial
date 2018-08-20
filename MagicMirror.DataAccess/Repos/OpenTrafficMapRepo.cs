@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MagicMirror.DataAccess.Repos
 {
-    public class OpenTrafficMapRepo : Repository<OpenMapEntity>
+    public class OpenTrafficMapRepo : Repository<OpenMapEntity>, IOpenTrafficMapRepo
     {
         private string _start;
         private string _destination;
 
-        public Task<TrafficEntity> GetTrafficInfoAsync(string start, string destination)
+        public Task<OpenMapEntity> GetTrafficInfoAsync(string start, string destination)
         {
             throw new NotImplementedException();
         }

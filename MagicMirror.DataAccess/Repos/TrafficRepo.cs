@@ -1,4 +1,5 @@
 ﻿using MagicMirror.DataAccess.Configuration;
+using MagicMirror.DataAccess.Entities.Entities;
 using MagicMirror.DataAccess.Entities.Traffic;
 using System;
 using System.Net.Http;

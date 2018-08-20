@@ -4,7 +4,7 @@ namespace MagicMirror.DataAccess.Entities.Entities
 {
     public class OpenMapEntity : Entity
     {
-        public Route route { get; set; }
-        public Info info { get; set; }
+        public Route Route { get; set; }
+        public Info Info { get; set; }
     }
 }

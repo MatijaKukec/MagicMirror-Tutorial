@@ -1,7 +1,6 @@
 ﻿using MagicMirror.Business.Models;
 using MagicMirror.Business.Services;
 using MagicMirror.DataAccess.Entities.Traffic;
-using MagicMirror.DataAccess.Repos;
 using Xunit;
 
 namespace MagicMirror.Tests.Traffic
