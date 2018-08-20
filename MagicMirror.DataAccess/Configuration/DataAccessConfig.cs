@@ -33,5 +33,21 @@
                 return "AIzaSyBGoN7HTIWBLk6N9CqEqvJsV_KGFmwt8tw";
             }
         }
+
+        public static string OpenTrafficMapApiUrl
+        {
+            get
+            {
+                return "http://open.mapquestapi.com/directions/v2/route";
+            }
+        }
+
+        public static string OpenTrafficMapApiId
+        {
+            get
+            {
+                return "TAnpAU0flosxm7rGregktJuEfmhPxa19";
+            }
+        }
     }
 }
