@@ -1,0 +1,12 @@
+﻿using System.Threading.Tasks;
+using MagicMirror.Business.Models;
+using MagicMirror.DataAccess.Entities.Entities;
+
+namespace MagicMirror.Business.Services
+{
+    public interface IOpenTrafficService
+    {
+        Task<TrafficModel> GetTrafficModelAsync(string origin, string destination);
+        TrafficModel MapFromEntity(OpenTrafficMapEntity entity);
+    }
+}

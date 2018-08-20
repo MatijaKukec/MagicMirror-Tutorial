@@ -20,7 +20,7 @@ namespace MagicMirror.Tests.OpenTrafficMap
         public async Task Can_Retrieve_Traffic_Data()
         {
             // Arrange
-            OpenMapEntity entity = null;
+            OpenTrafficMapEntity entity = null;
             string start = "London, UK";
             string destination = "Brighton, UK";
 
@@ -43,7 +43,7 @@ namespace MagicMirror.Tests.OpenTrafficMap
             var entity = await _repo.GetTrafficInfoAsync(start, destination);
 
             // Assert
-            Assert.IsType<OpenMapEntity>(entity);
+            Assert.IsType<OpenTrafficMapEntity>(entity);
         }
 
         [Fact]
