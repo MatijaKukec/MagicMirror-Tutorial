@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MagicMirror.DataAccess.Entities.OpenMap
+﻿namespace MagicMirror.DataAccess.Entities.OpenMap
 {
     public class Leg
     {
