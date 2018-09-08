@@ -34,34 +34,34 @@ namespace MagicMirror.Business.Models
             Sunrise = DateTimeHelper.ConvertFromUnixTimeStamp(sunrise).ToShortTimeString();
         }
 
-        private void ConvertTemperature(double degrees, TemperatureUom toConvertInto)
+        private void ConvertTemperature(double degreesToConvert, TemperatureUom targetTemperatureUom)
         {
             double convertedDegrees = 0;
-            switch (toConvertInto)
+            switch (targetTemperatureUom)
             {
                 case TemperatureUom.Celsius:
-                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToCelsius(degrees); }
-                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degrees); }
-                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = degrees; }
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToCelsius(degreesToConvert); }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degreesToConvert); }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = degreesToConvert; }
                     break;
 
                 case TemperatureUom.Fahrenheit:
-                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degrees); }
-                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = degrees; }
-                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToFahrenheit(degrees); }
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = TemperatureHelper.KelvinToFahrenheit(degreesToConvert); }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = degreesToConvert; }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToFahrenheit(degreesToConvert); }
                     break;
 
                 case TemperatureUom.Kelvin:
-                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = degrees; }
-                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.FahrenheitToKelvin(degrees); }
-                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToKelvin(degrees); }
+                    if (TemperatureUom == TemperatureUom.Kelvin) { convertedDegrees = degreesToConvert; }
+                    else if (TemperatureUom == TemperatureUom.Fahrenheit) { convertedDegrees = TemperatureHelper.FahrenheitToKelvin(degreesToConvert); }
+                    else if (TemperatureUom == TemperatureUom.Celsius) { convertedDegrees = TemperatureHelper.CelsiusToKelvin(degreesToConvert); }
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(TemperatureUom), TemperatureUom, null);
             }
 
-            TemperatureUom = toConvertInto;
+            TemperatureUom = targetTemperatureUom;
             Temperature = convertedDegrees;
         }
     }
