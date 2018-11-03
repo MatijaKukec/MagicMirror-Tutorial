@@ -11,14 +11,11 @@ namespace MagicMirror.ConsoleApp
     {
         // Services
         private IWeatherService _weatherService;
-
         private ITrafficService _trafficService;
 
         // Models
         private UserInformation _userInformation;
-
-        private WeatherModel _weatherModel;
-        private TrafficModel _trafficModel;
+        private MainViewModel model;
 
         public Main(IWeatherService weatherService, ITrafficService trafficService)
         {
@@ -31,8 +28,8 @@ namespace MagicMirror.ConsoleApp
             try
             {
                 _userInformation = GetMockInformation();
-                _weatherModel = await GetWeatherModelAsync(_userInformation.Town);
-                _trafficModel = await GetTrafficModelAsync($"{_userInformation.Address}, {_userInformation.Town}", _userInformation.WorkAddress);
+                model.Weather = await GetWeatherModelAsync(_userInformation.Town);
+                model.Traffic = await GetTrafficModelAsync($"{_userInformation.Address}, {_userInformation.Town}", _userInformation.WorkAddress);
 
                 GenerateOutput();
             }
@@ -91,24 +88,24 @@ namespace MagicMirror.ConsoleApp
 
         private async Task<WeatherModel> GetWeatherModelAsync(string city)
         {
-            _weatherModel = await _weatherService.GetWeatherModelAsync(city);
+            var _weatherModel = await _weatherService.GetWeatherModelAsync(city);
             return _weatherModel;
         }
 
         private async Task<TrafficModel> GetTrafficModelAsync(string start, string destination)
         {
-            _trafficModel = await _trafficService.GetTrafficModelAsync(start, destination);
+            var _trafficModel = await _trafficService.GetTrafficModelAsync(start, destination);
             return _trafficModel;
         }
 
         private void GenerateOutput()
         {
             Console.WriteLine($"Good {DateTimeHelper.GetTimeOfDay()} {_userInformation.Name}");
-            Console.WriteLine($"The current time is {DateTime.Now.ToShortTimeString()} and the outside weather is {_weatherModel.WeatherType}.");
-            Console.WriteLine($"Current topside temperature is {_weatherModel.Temperature} degrees {_weatherModel.TemperatureUom}.");
-            Console.WriteLine($"The sun has risen at {_weatherModel.Sunrise} and will set at approximately {_weatherModel.Sunset}.");
-            Console.WriteLine($"Your trip to work will take about {_trafficModel.TravelTime}. " +
-                $"If you leave now, you should arrive at approximately {_trafficModel.TimeOfArrival.ToShortTimeString()}.");
+            Console.WriteLine($"The current time is {DateTime.Now.ToShortTimeString()} and the outside weather is {model.Weather.WeatherType}.");
+            Console.WriteLine($"Current topside temperature is {model.Weather.Temperature} degrees {model.Weather.TemperatureUom}.");
+            Console.WriteLine($"The sun has risen at {model.Weather.Sunrise} and will set at approximately {model.Weather.Sunset}.");
+            Console.WriteLine($"Your trip to work will take about {model.Traffic.TravelTime}. " +
+                $"If you leave now, you should arrive at approximately {model.Traffic.TimeOfArrival.ToShortTimeString()}.");
             Console.WriteLine("Thank you, and have a very safe and productive day!");
         }
     }
